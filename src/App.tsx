@@ -20,7 +20,7 @@ const App: React.FC = () => {
     setLoading(true);
 
     try {
-      const API_URL = 'https://fwcv7f5k-5001.usw3.devtunnels.ms'
+      const API_URL = 'https://chilakhbhaibackend.netlify.app'
       // || 'http://localhost:5001';
       console.log("test abc", newMessages )
       const response = await axios.post(`${API_URL}/api/chat`, {
