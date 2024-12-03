@@ -75,6 +75,7 @@ const App: React.FC = () => {
   const [userInput, setUserInput] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [selectedModel, setSelectedModel] = useState<string>(AVAILABLE_MODELS[0].id);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const selectedModelInfo = AVAILABLE_MODELS.find(model => model.id === selectedModel);
 
@@ -175,10 +176,34 @@ const App: React.FC = () => {
     );
   };
 
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const closeSidebar = () => {
+    setIsSidebarOpen(false);
+  };
+
   return (
     <div className="app-container">
-      {/* Left Sidebar */}
-      <div className="sidebar">
+      {/* Mobile Menu Button */}
+      <button 
+        className={`menu-toggle ${isSidebarOpen ? 'open' : ''}`}
+        onClick={toggleSidebar}
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      {/* Sidebar Overlay */}
+      <div 
+        className={`sidebar-overlay ${isSidebarOpen ? 'open' : ''}`}
+        onClick={closeSidebar}
+      />
+
+      {/* Sidebar */}
+      <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
           <h2>AI Models</h2>
           <p className="sidebar-subtitle">Choose your AI companion</p>
